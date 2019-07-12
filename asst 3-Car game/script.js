@@ -111,8 +111,10 @@ class Game{
                 that.score = 0;
                 that.scoreStatus = false;
                 that.enemyCars = [];
+                that.images = [];
                 that.carspeed = 700;
                 that.speed = 5;
+                that.laneSpeed = that.speed;
                 
                 that.user = new Car( (that.laneWidth/2 + 2 * that.laneWidth - that.carWidth/2) , CANVAS_HEIGHT - that.carHeight , that.carWidth , that.carHeight , true, that.images );
                 // that.user.position = 2;
@@ -270,6 +272,7 @@ class Game{
                 
                 ,this.carspeed);
         },2000);
+        
     }
     draw(){
         this.ctx.clearRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
