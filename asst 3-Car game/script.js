@@ -24,6 +24,7 @@ class Game{
         this.start = true;
         this.gameover = false;
         this.highScore = localStorage.getItem('carHighscore') || 0;
+        this.interval;
 
         this.tempSpeed;
         this.carspeed = 700;
@@ -54,9 +55,14 @@ class Game{
         this.ctx.font = "60px Arial" ;
         this.ctx.fillText(`CAR GAME`,CANVAS_WIDTH/2-170, CANVAS_HEIGHT/2-100);
         
+
+        this.ctx.fillStyle = "#99D1E8";
+        this.ctx.font = "25px Arial" ;
+        this.ctx.fillText(`Press A and D to move left or right`,CANVAS_WIDTH/2-200, CANVAS_HEIGHT/2);
+
         this.ctx.fillStyle = "white";
         this.ctx.font = "23px Arial" ;
-        this.ctx.fillText(`PRESS SPACEBAR TO  BEGIN`,CANVAS_WIDTH/2-170, CANVAS_HEIGHT/2);
+        this.ctx.fillText(`PRESS SPACEBAR TO  BEGIN`,CANVAS_WIDTH/2-170, CANVAS_HEIGHT/2+100);
         let that = this;
 
         document.onkeypress = function (e){
@@ -100,7 +106,6 @@ class Game{
         let that = this;
         document.onkeypress = function (e){
             if (e.keyCode == 32){
-                console.log(e);
                 that.start = true;
                 that.gameover = false;
                 that.score = 0;
@@ -108,12 +113,11 @@ class Game{
                 that.enemyCars = [];
                 that.carspeed = 700;
                 that.speed = 5;
+                
+                that.user = new Car( (that.laneWidth/2 + 2 * that.laneWidth - that.carWidth/2) , CANVAS_HEIGHT - that.carHeight , that.carWidth , that.carHeight , true, that.images );
+                // that.user.position = 2;
                 that.run();
-                that.user = new Car( (this.laneWidth/2 + 2 * this.laneWidth - this.carWidth/2) , CANVAS_HEIGHT - this.carHeight , this.carWidth , this.carHeight , true, this.images );
-                that.user.position = 2;
-                // console.log(this.start);
-    
-                // this.start = false;
+                
             }
         }
     }
@@ -208,21 +212,18 @@ class Game{
         localStorage.setItem('carHighscore',this.highScore);
     }
     
-
     static randomNum(min,max){
         max = Math.floor(max);
         min = Math.ceil(min);
         return min+Math.floor(Math.random() * (max-min));
     }
 
-    
-
-
     isCollision(){
         for (let i =0 ; i<this.enemyCars.length; i++){
             if ((this.user.position == this.enemyCars[i].position) && (this.enemyCars[i].y+this.carHeight >= this.user.y)){
                 this.gameover = true;
-                window.cancelAnimationFrame(this.animation);     
+                window.cancelAnimationFrame(this.animation);   
+                clearInterval(this.interval);     
             }
         }
     }
@@ -254,8 +255,8 @@ class Game{
     }
 
     updateCarSpeed(){
-        setInterval(()=>{
-            if (this.carspeed < 20){
+        this.interval = setInterval(()=>{
+            if (this.carspeed < 200){
                 this.carspeed = 200;
             }
             else{
