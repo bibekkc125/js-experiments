@@ -225,7 +225,8 @@ class Game{
             if ((this.user.position == this.enemyCars[i].position) && (this.enemyCars[i].y+this.carHeight >= this.user.y)){
                 this.gameover = true;
                 window.cancelAnimationFrame(this.animation);   
-                clearInterval(this.interval);     
+                clearInterval(this.interval); 
+                clearInterval(this.tempSpeed);    
             }
         }
     }
