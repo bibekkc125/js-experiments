@@ -259,8 +259,8 @@ class Game{
 
     updateCarSpeed(){
         this.interval = setInterval(()=>{
-            if (this.carspeed < 200){
-                this.carspeed = 200;
+            if (this.carspeed < 300){
+                this.carspeed = 300;
             }
             else{
                 this.carspeed = this.carspeed - this.speed*4;
