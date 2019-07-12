@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        canvas{
+            position:relative;
+            left:50%;
+            /* overflow:auto; */
+            transform:translateX(-50%);
+        }
+        img{
+            display:none;
+        }
+        .cover{
+            width:450px;
+            height: 1000px;
+        }
+    </style>
+</head>
+
+<body>
+    <img class = "user" src="images/user.png" alt="user">
+    <img class = "enemy" src="images/1.png" alt="user">
+    <img class = "enemy" src="images/2.png" alt="user">
+    <img class = "enemy" src="images/3.png" alt="user">
+    <img class = "enemy" src="images/4.png" alt="user">
+    <img class = "enemy" src="images/5.png" alt="user">
+    <img class = "cover" src="images/gamecover.jpg" alt="cover">
+    <script src="car.js"></script>
+    <script src ="script.js"></script>
+</body>
+</html>
